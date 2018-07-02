@@ -1,0 +1,53 @@
+// CommAx.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(CommAx.tlb)，该类型库将成为
+// CommAx.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(174AB775-4743-4A1E-BF7B-D570BAC9B0F3), version(1.0),
+  control ]
+library CommAxLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CCommAxCtrl 的主调度接口
+	[ 
+		uuid(4F628536-E5DD-4DA0-8341-E8E4B7A22D95)	
+	]
+	dispinterface _DCommAx
+	{
+		properties:
+		methods:
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+			[id(1)] BSTR NETSendAndReceive(BSTR strJson);
+			[id(2)] BSTR NETSendAndReceiveImg(BSTR strJson, BSTR strImgPath);
+	};
+
+	//  CCommAxCtrl 的事件调度接口
+
+	[ 
+		uuid(27131751-8E45-499F-903E-8361F2667F1A)	
+	]
+	dispinterface _DCommAxEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+	};
+
+	//  CCommAxCtrl 的类信息
+	[
+		uuid(23BCC422-10AB-479A-B4C7-C725874BB107)
+	]
+	coclass CommAx
+	{
+		[default] dispinterface _DCommAx;
+		[default, source] dispinterface _DCommAxEvents;
+	};
+
+};
