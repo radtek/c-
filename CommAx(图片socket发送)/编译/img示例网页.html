@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<OBJECT id="ImgOcx" align="CENTER" WIDTH=100 HEIGHT=100 codeBase="imgTcp.ocx" classid="CLSID:285D5807-9271-4783-B737-75F1C551ADF2"></OBJECT> 
+	
+	<script language="javascript"> 
+		
+		function doTest() 
+		{ 	
+			
+			/*
+			if (!window.ActiveXObject) {
+	          		alert("对不起，证书登陆请使用IE浏览器！");
+	 	        	return;
+   			}
+			*/
+			//设置超时时间
+			ImgOcx.strSetTimeout("90000");
+			//设置IP和port
+			if( "-1" == ImgOcx.strSetIpAndPort("192.168.211.128","5999"))
+			{	
+				//查看最后的错误
+				var str = ImgOcx.strGetLastError();
+				alert(str);
+				return;
+			}
+			
+			var strJson = "{\"Abc\":\"自定义\"}";
+			var strImgPath = "e:\\jpg.jpg";
+			//发送图片
+			var strRet = ImgOcx.strImgTcp(strJson,strImgPath);
+			if( "-1" == strRet)
+			{
+				//查看最后的错误
+				var str = ImgOcx.strGetLastError();
+				alert(str);
+				return;
+			}
+			
+			alert(strRet);
+			
+		} 
+	</script> 
+	<BODY> 
+	<input type="button" value="发送图片" id="btnOK" onclick="doTest();"></input> 
+	</BODY> 
+	</HTML> 
