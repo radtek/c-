@@ -178,5 +178,17 @@ namespace GWI_SFTPClient{
 	const char* path：文件夹路径
 	/************************************************************************/
 	int sftpCd(const char* path);
+
+	/************************************************************************/
+	/* 函数： sftpRename
+	/* 说明： 重命名文件
+	/* 参数： 输入
+	const char* sftpfilename：ftp文件路径
+	const char* newfilename:新命名的名字
+	/************************************************************************/
+	int sftpRename(
+		const char* sftpfilename, 
+		const char* newfilename);
+	
 }
 #endif //#ifndef _SFTPCLINET_GWI_

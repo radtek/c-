@@ -2,8 +2,8 @@
  * 文件名：SFTPClient.cpp
  * 说明　：SFTP 客户端实现
  * 　　　　提供文件 和 文件夹 上传、下载功能
- * 作者  ：whish
- * 日期  ：2018.04.27
+ * 作者  ：whish(spider修改)
+ * 日期  ：2018.07.10
  */ 
 #include "stdafx.h"
 #include "SFTPClient.h"
@@ -353,7 +353,6 @@ int GWI_SFTPClient::uploadFile(
 	fclose(hlocalfile);
 	libssh2_sftp_close(sftp_handle);
 	libssh2_sftp_shutdown(sftp_session);
-
 	return 0;
 }
 
@@ -687,3 +686,23 @@ int GWI_SFTPClient::sftpCd(const char* path)
 	return ret;
 }
 
+/************************************************************************/
+	/* 函数： sftpRename
+	/* 说明： 重命名文件
+	/* 参数： 输入
+	const char* sftpfilename：ftp文件路径
+	const char* newfilename:新命名的名字
+	/************************************************************************/
+int GWI_SFTPClient::sftpRename( const char* sftpfilename, const char* newfilename)
+{
+	int ret = 0;
+	LIBSSH2_SFTP* sftp_session = libssh2_sftp_init(session);
+	ret = libssh2_sftp_rename(sftp_session,sftpfilename,newfilename);
+	libssh2_sftp_shutdown(sftp_session);
+	if (ret)
+	{
+		return -8;
+	}
+	return ret;
+	
+}
