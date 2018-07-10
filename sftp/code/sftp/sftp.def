@@ -1,0 +1,14 @@
+; sftp.def : 声明 DLL 的模块参数。
+
+LIBRARY
+
+EXPORTS
+    ; 此处可以是显式导出
+	ftpopen			@1
+	ftpclose		@2
+	cd				@3
+	uploadfile		@4
+	uploaddir		@5
+	downloadfile	@6
+	downloaddir		@7
+	ftprename	@8
