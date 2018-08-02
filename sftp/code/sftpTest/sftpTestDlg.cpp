@@ -6,6 +6,7 @@
 #include "sftpTest.h"
 #include "sftpTestDlg.h"
 #include "afxdialogex.h"
+#include "sftp.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -102,6 +103,12 @@ BOOL CsftpTestDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 
+	SetDlgItemText(IDC_EDIT1,"30.3.249.70");
+	SetDlgItemText(IDC_EDIT2,"22");
+	SetDlgItemText(IDC_EDIT3,"ccms_fsn");
+	SetDlgItemText(IDC_EDIT4,"ccms_fsn");
+	SetDlgItemText(IDC_EDIT5,"/ccms_fsn/atm/test/");
+
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -166,16 +173,26 @@ FunUploaddir	uploaddir	= NULL;
 FunUploadfile	uploadfile	= NULL;
 FunFtprename		ftprename	= NULL;
 
+typedef bool (* FuncSftpUploadFiles)(CString , INT , CString , CString , CString , CStringList &, CStringList &);
+FuncSftpUploadFiles	SftpUploadFiles = NULL;
+
 void CsftpTestDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	bool bRet = false;
+	m_load = false;
 	do 
 	{
 		m_hinstacne = ::LoadLibrary("sftp.dll");
 		if (m_hinstacne == NULL) 
 			break;
 
+		SftpUploadFiles = (FuncSftpUploadFiles)::GetProcAddress(m_hinstacne, "SftpUploadFiles");
+		if (SftpUploadFiles == NULL)
+		{
+			break;
+		}
+		/*
 		ftpopen = (FunFtpopen)::GetProcAddress(m_hinstacne, "ftpopen");
 		if (ftpopen == NULL)
 		{
@@ -204,9 +221,10 @@ void CsftpTestDlg::OnBnClickedButton1()
 		{
 			break;
 		}
-
+		*/
 
 		bRet = true;
+		m_load = true;
 	} while (0);
 	
 	if (!bRet)
@@ -225,6 +243,48 @@ void CsftpTestDlg::OnBnClickedButton1()
 void CsftpTestDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	do 
+	{
+
+		CString strIp;
+		CString strPort;
+		CString strUser;
+		CString strPassword;
+		CString strSftpPath;
+		GetDlgItemText(IDC_EDIT1,strIp);
+		GetDlgItemText(IDC_EDIT2,strPort);
+		GetDlgItemText(IDC_EDIT3,strUser);
+		GetDlgItemText(IDC_EDIT4,strPassword);
+		GetDlgItemText(IDC_EDIT5,strSftpPath);
+
+		if (strIp.IsEmpty() || strPort.IsEmpty() || strUser.IsEmpty() || strPassword.IsEmpty())
+		{
+			MessageBox("有输入框为空");
+			break;
+		}
+		/*
+		sftp::Instance()->UpdateInfo(strIp.GetBuffer(),atoi(strPort),strUser.GetBuffer(),strPassword.GetBuffer());
+
+		short sRet = sftp::Instance()->CreateDirUploadRename(strSftpPath.GetBuffer(),"d:\\1.txt",(strSftpPath + CString("1.txt")).GetBuffer(),(strSftpPath + CString("1.txt")).GetBuffer(),(strSftpPath + CString("1_rename.txt")).GetBuffer());
+		*/
+		CStringList LocalList, RenameList;
+		LocalList.AddHead("d:\\1.txt");
+		LocalList.AddHead("d:\\2.txt");
+		LocalList.AddHead("d:\\3.txt");
+		RenameList.AddHead(strSftpPath + "1_rename.txt");
+		RenameList.AddHead(strSftpPath + "2_rename.txt");
+		RenameList.AddHead(strSftpPath + "3_rename.txt");
+		BOOL bRet = SftpUploadFiles(strIp,atoi(strPort),strUser,strPassword,strSftpPath,LocalList,RenameList);
+		if (!bRet)
+		{
+			MessageBox("上传失败");
+			break;
+		}
+		
+
+		MessageBox("上传成功");
+
+	} while (0);
 }
 
 
@@ -275,21 +335,51 @@ void CsftpTestDlg::OnBnClickedButton3()
 	//getchar();
 	do 
 	{
-		if (!ftpopen("192.168.0.159",23,"test","1234"))
+		if (!m_load)
 		{
+			MessageBox("先load dll");
 			break;
 		}
-		/*
-		if (!uploadfile("/gwi/txt","e:\\\\ftp_sftp-master\\\\123.txt","33.TXT"))
+
+		CString strIp;
+		CString strPort;
+		CString strUser;
+		CString strPassword;
+		GetDlgItemText(IDC_EDIT1,strIp);
+		GetDlgItemText(IDC_EDIT2,strPort);
+		GetDlgItemText(IDC_EDIT3,strUser);
+		GetDlgItemText(IDC_EDIT4,strPassword);
+
+		if (strIp.IsEmpty() || strPort.IsEmpty() || strUser.IsEmpty() || strPassword.IsEmpty())
 		{
+			MessageBox("有输入框为空");
 			break;
 		}
-		*/
-		if (!ftprename("/gwi/txt/33.txt","/gwi/txt/3333s.txt"))
+
+
+
+		if (!ftpopen(strIp,atoi(strPort),strUser,strPassword))
 		{
+			MessageBox("open失败");
+			ftpclose();
 			break;
 		}
 		
+		if (!uploadfile("/ATMC_UPLOAD_TEST","D:\\\\1.txt",NULL))
+		{
+			MessageBox("上传失败");
+			ftpclose();
+			break;
+		}
+		
+		
+		if (!ftprename("/ATMC_UPLOAD_TEST/1.txt","/ATMC_UPLOAD_TEST/test.txt"))
+		{
+			MessageBox("上传成功,改名失败");
+			break;
+		}
+		
+		MessageBox("上传成功");
 	} while (0);
-	ftpclose();
+	
 }

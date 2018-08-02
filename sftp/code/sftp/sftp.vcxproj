@@ -14,6 +14,7 @@
     <ProjectGuid>{814741A4-9ED6-4752-A865-6922A62775DA}</ProjectGuid>
     <RootNamespace>sftp</RootNamespace>
     <Keyword>MFCDLLProj</Keyword>
+    <ProjectName>sftp_old</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

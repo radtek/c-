@@ -76,7 +76,10 @@ int makeSFTPDir(LIBSSH2_SFTP *sftp_session, const char *sftppath)
 	{
 		sprintf_s(tmppath,MAXPATH,"%s/%s",tmppath,token);
 		if(!SFTPDirExist(sftp_session, tmppath))
-			if(libssh2_sftp_mkdir(sftp_session, tmppath,0))
+			if(libssh2_sftp_mkdir(sftp_session, tmppath,
+				LIBSSH2_SFTP_S_IRWXU|
+				LIBSSH2_SFTP_S_IRGRP|LIBSSH2_SFTP_S_IXGRP|
+				LIBSSH2_SFTP_S_IROTH|LIBSSH2_SFTP_S_IXOTH))
 				return -1;
 		token = strtok( NULL, seps );
 	}
@@ -204,33 +207,40 @@ int GWI_SFTPClient::sftpOpen(const char *ip,int port,const char *username, const
     //fprintf(stderr, "\n");
  
 	/* check what authentication methods are available */ 
+	/*
     userauthlist = libssh2_userauth_list(session, username, strlen(username));
 
+	
 	if (strstr(userauthlist, "password") != NULL) {
         auth_pw |= 1;
     }
+	
     if (strstr(userauthlist, "keyboard-interactive") != NULL) {
         auth_pw |= 2;
     }
     if (strstr(userauthlist, "publickey") != NULL) {
         auth_pw |= 4;
     }
-
+	
 	if(auth_pw & 1)
 	{
 		while ((rc = libssh2_userauth_password(session, username, password)) == LIBSSH2_ERROR_EAGAIN);
 		
-	}else if(auth_pw & 2)
+	}
+	else if(auth_pw & 2)
 	{ 
 		while ((rc = libssh2_userauth_keyboard_interactive(session, username, &kbd_sign_callback)) == LIBSSH2_ERROR_EAGAIN);
 	}else if(auth_pw & 4)
 	{ 
 		while ((rc = libssh2_userauth_publickey_fromfile(session, username, keyfile1, keyfile2, password)) == LIBSSH2_ERROR_EAGAIN);
 	}
+	*/
+
+	while ((rc = libssh2_userauth_password(session, username, password)) == LIBSSH2_ERROR_EAGAIN);
 	if (rc) {
         ret = -6;
     }
-	return 0;
+	return ret;
 }
 
 /************************************************************************
@@ -353,7 +363,7 @@ int GWI_SFTPClient::uploadFile(
 	fclose(hlocalfile);
 	libssh2_sftp_close(sftp_handle);
 	libssh2_sftp_shutdown(sftp_session);
-	return 0;
+	return ret;
 }
 
 /**

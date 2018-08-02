@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<OBJECT id="Ocx" align="CENTER" WIDTH=100 HEIGHT=100 codeBase="Camera.ocx" classid="CLSID:942C47F3-62F8-454F-BC2C-CA6C5AE1CCD1"></OBJECT> 
+	
+	<script language="javascript"> 
+		
+		function abc() 
+		{ 	
+			/*
+			if (!window.ActiveXObject) {
+	          		alert("对不起，证书登陆请使用IE浏览器！");
+	 	        	return;
+   			}
+			*/
+			Ocx.hySetWindowPosition(0,0,1366,768);
+			if ( 0 != Ocx.hyStartCamera() )
+			{
+				alert("开摄像头失败");
+				return;
+			}
+			Ocx.hySavePicturePath("d:\\1\\");
+		} 
+
+		function stop()
+		{
+			
+			Ocx.hyStopCamera();
+		}
+
+		function getPicture()
+		{
+			
+			var str = Ocx.hyGetPicture();
+			//alert(str);
+		}
+
+		window.onbeforeunload= function(event) { 
+			stop();
+		}
+
+		//window.onunload = function(event) { return confirm("确定离开此页面吗？"); }
+	</script> 
+	<BODY> 
+	
+	<input type="button" value="stop" id="btn2" onclick="stop();"></input> 
+	<input type="button" value="picture" id="btn3" onclick="getPicture();"></input> 
+
+	
+	<input type="button" value="start" id="btn1" onclick="abc();"></input> 
+
+	</BODY> 
+	</HTML> 

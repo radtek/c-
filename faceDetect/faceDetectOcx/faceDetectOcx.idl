@@ -1,0 +1,54 @@
+// faceDetectOcx.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(faceDetectOcx.tlb)，该类型库将成为
+// faceDetectOcx.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(0E73220C-0A9F-41B5-B063-9036936A279B), version(1.0),
+  control ]
+library faceDetectOcxLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CfaceDetectOcxCtrl 的主调度接口
+	[ 
+		uuid(B42C8159-7C6C-42CF-8B9E-AE8EEE7E8E1D)	
+	]
+	dispinterface _DfaceDetectOcx
+	{
+		properties:
+		methods:
+			[id(1)] LONG hyInit(void);
+			[id(2)] LONG hyStartCamera(void);
+			[id(3)] LONG hyStopCamera(void);
+			[id(4)] LONG hyStartLiveDetect(BSTR jpgImagePath);
+	};
+
+	//  CfaceDetectOcxCtrl 的事件调度接口
+
+	[ 
+		uuid(BAAEA834-E078-4CC0-A2CF-3786C6699FAA)	
+	]
+	dispinterface _DfaceDetectOcxEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+			[id(5)] void hyLivesInfoCallBack(BSTR base64Image);
+	};
+
+	//  CfaceDetectOcxCtrl 的类信息
+	[
+		uuid(F620116E-E336-4039-B505-953ACC371363)
+	]
+	coclass faceDetectOcx
+	{
+		[default] dispinterface _DfaceDetectOcx;
+		[default, source] dispinterface _DfaceDetectOcxEvents;
+	};
+
+};

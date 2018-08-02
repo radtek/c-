@@ -1,0 +1,55 @@
+// Camera.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(Camera.tlb)，该类型库将成为
+// Camera.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(268B4873-48B5-4E89-A5B3-42A2B5383C7B), version(1.0),
+  control ]
+library CameraLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CCameraCtrl 的主调度接口
+	[ 
+		uuid(B4F6D8B7-84AB-4759-A69C-872E1857A859)	
+	]
+	dispinterface _DCamera
+	{
+		properties:
+		methods:
+			[id(1)] LONG hyStartCamera(void);
+			[id(2)] void hyStopCamera(void);
+			[id(3)] BSTR hyGetPicture(void);
+			[id(4)] void hySavePicturePath(BSTR strPath);
+			[id(5)] void hySetPicMaxWidthHeight(LONG width, LONG height);
+			[id(6)] void hySetWindowPosition(LONG windowX, LONG windowY, LONG windowWidth, LONG windowHeight);
+	};
+
+	//  CCameraCtrl 的事件调度接口
+
+	[ 
+		uuid(BB502913-9A6D-4702-8A1D-8E2EEDD258DF)	
+	]
+	dispinterface _DCameraEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+	};
+
+	//  CCameraCtrl 的类信息
+	[
+		uuid(942C47F3-62F8-454F-BC2C-CA6C5AE1CCD1)
+	]
+	coclass Camera
+	{
+		[default] dispinterface _DCamera;
+		[default, source] dispinterface _DCameraEvents;
+	};
+
+};

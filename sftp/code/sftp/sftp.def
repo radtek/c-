@@ -11,4 +11,4 @@ EXPORTS
 	uploaddir		@5
 	downloadfile	@6
 	downloaddir		@7
-	ftprename	@8
+	ftprename		@8
