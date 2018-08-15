@@ -181,6 +181,9 @@ void CColor2BWtestDlg::OnBnClickedButton1()
 		str.Format("%d",nRet);
 		MessageBox(str);
 
+
 	} while (0);
+
+	FreeLibrary(m_hinstacne);
 	
 }

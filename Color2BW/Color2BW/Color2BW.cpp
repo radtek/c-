@@ -177,20 +177,59 @@ int  save_bmp_image( const  cv::Mat img, std::string dst)
 	return  0;
 }
 
+void alphaToWhite(Mat &srcAlpha)
+{
+	int alpha = 0;
+	int nc = 3;
+	for (int j = 0; j < srcAlpha.rows; j++)
+	{
+		for (int i = 0; i < srcAlpha.cols * 3; i += 3)
+		{
+			// 目的图片为三通道，所以是三通道的遍历、四通道的源图
+			// i/3*4表示第i/3个像素的位置 
+			// i/3*4 + 3表示本像素的alpha通道的值
+			alpha = srcAlpha.ptr<uchar>(j)[i / 3 * 4 + 3];
+			//alpha = 255-alpha;
+			if (alpha == 0) //4通道图像的alpha判断
+			{
+				for (int k = 0; k < 3; k++)
+				{
+					// if (src1.ptr<uchar>(j)[i / nc*nc + k] != 0)
+					if ((j  < srcAlpha.rows) && (j  >= 0) &&
+						((i) / 3 * 3 + k < srcAlpha.cols * 3) && ((i) / 3 * 3 + k >= 0) &&
+						(i / nc * 4 + k < srcAlpha.cols * 4) && (i / nc * 4 + k >= 0))
+					{
+						srcAlpha.ptr<uchar>(j)[(i) / nc*4 + k] = 255;
+					}
+				}
+
+			}
+		}
+	}
+}
+
 //参数szSrcPath:输入图片地址
 //参数szDstPath:输出图片地址
 int Color2BW(const char * szSrcPath,const char * szDstPath)
 {
 	CString strSrcPath(szSrcPath);
 	string strDstPath(szDstPath);
+
 	if( !PathFileExists(strSrcPath) )
 		return -1;
 
 	Mat matSrc;
-	matSrc = imread(szSrcPath);
+	matSrc = imread(szSrcPath, -1);
+
+	if (matSrc.channels() == 4)
+	{
+		//透明像素转白
+		alphaToWhite(matSrc);
+	}
 
 	//彩色转灰色
 	cvtColor(matSrc,matSrc,CV_BGR2GRAY); 
+
 	//灰色转二值化
 	threshold(matSrc, matSrc, 177, 255, CV_THRESH_BINARY);
 
