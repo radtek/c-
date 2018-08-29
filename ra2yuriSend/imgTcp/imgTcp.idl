@@ -1,0 +1,55 @@
+// imgTcp.idl : ActiveX 控件项目的类型库源。
+
+// 此文件将由 MIDL 编译器工具处理以
+// 产生类型库(imgTcp.tlb)，该类型库将成为
+// imgTcp.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(65AC894F-4D99-4D16-BEEC-5B4408E5628D), version(1.0),
+  control ]
+library imgTcpLib
+{
+	importlib(STDOLE_TLB);
+
+	//  CimgTcpCtrl 的主调度接口
+	[ 
+		uuid(61F94D57-91C1-4332-8F4F-E13C90E20D5D)	
+	]
+	dispinterface _DimgTcp
+	{
+		properties:
+		methods:
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+			[id(1)] BSTR strImgTcp(BSTR strJsonLength, BSTR strJson, BSTR strImgPath);
+			[id(2)] BSTR strSetIpAndPort(BSTR strIp, BSTR strPort);
+			[id(3)] BSTR strGetLastError(void);
+			[id(4)] BSTR strSetTimeout(BSTR strMillisecond);
+	};
+
+	//  CimgTcpCtrl 的事件调度接口
+
+	[ 
+		uuid(BFD2A219-2DB9-4C4D-9D37-5DC02DE02C7B)	
+	]
+	dispinterface _DimgTcpEvents
+	{
+		properties:
+			//  事件接口没有任何属性
+
+		methods:
+	};
+
+	//  CimgTcpCtrl 的类信息
+	[
+		uuid(285D5807-9271-4783-B737-75F1C551ADF2)
+	]
+	coclass imgTcp
+	{
+		[default] dispinterface _DimgTcp;
+		[default, source] dispinterface _DimgTcpEvents;
+	};
+
+};

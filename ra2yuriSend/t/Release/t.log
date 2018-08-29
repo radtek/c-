@@ -1,0 +1,27 @@
+﻿生成启动时间为 2018/8/22 16:32:50。
+     1>项目“E:\github\c-\ra2yuriSend\t\t.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在对“Release\t.unsuccessfulbuild”执行 Touch 任务。
+       ClCompile:
+         所有输出均为最新。
+         所有输出均为最新。
+       ResourceCompile:
+         所有输出均为最新。
+       Link:
+         D:\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\github\c-\ra2yuriSend\Release\t.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:"Release\t.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\github\c-\ra2yuriSend\Release\t.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\github\c-\ra2yuriSend\Release\t.lib" /MACHINE:X86 Release\t.res
+         Release\stdafx.obj
+         Release\t.obj
+         Release\tDlg.obj
+         正在生成代码
+         已完成代码的生成
+         t.vcxproj -> E:\github\c-\ra2yuriSend\Release\t.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\github\c-\ra2yuriSend\Release\t.exe;#1" /manifest Release\t.exe.intermediate.manifest "D:\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+       FinalizeBuildStatus:
+         正在删除文件“Release\t.unsuccessfulbuild”。
+         正在对“Release\t.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\github\c-\ra2yuriSend\t\t.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.43
