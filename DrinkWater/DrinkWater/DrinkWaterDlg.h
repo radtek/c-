@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include "afxwin.h"
 
 #define WM_SYSTEMTRAY WM_USER+5
 #define	TIMER_HIDE_WINDOW 0
@@ -41,18 +42,24 @@ protected:
 	afx_msg LRESULT OnSystemtray(WPARAM wParam, LPARAM lParam);
 	void showDlg(bool bAuto = false);
 	void DrinkPlaySound(CString strSound);
+	void Autostart();
+	bool bGetStartUp();
 
 	NOTIFYICONDATA m_NotifyIcon;//Õ–≈ÃÕº±Í
 	BOOL m_bIconIsExist;//Õ–≈ÃÕº±Í“—¥Ê‘⁄
 	BOOL m_bPlaySoundOnce;
 	CString m_strCulPath;
 	CFont m_editFont;
+
+	bool m_bStartUp;
 public:
 	afx_msg void OnClose();
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedMfcmenubutton1();
 	afx_msg void OnDestroy();
 	afx_msg void OnExit();
+	afx_msg void On32777();
 	afx_msg void On32781();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CStatic m_pic;
 };

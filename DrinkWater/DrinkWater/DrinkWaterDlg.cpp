@@ -73,6 +73,7 @@ CDrinkWaterDlg::CDrinkWaterDlg(CWnd* pParent /*=NULL*/)
 void CDrinkWaterDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_STATIC_PIC, m_pic);
 }
 
 BEGIN_MESSAGE_MAP(CDrinkWaterDlg, CDialogEx)
@@ -83,6 +84,7 @@ BEGIN_MESSAGE_MAP(CDrinkWaterDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CDrinkWaterDlg::OnBnClickedOk)
 	ON_WM_DESTROY()
 	ON_MESSAGE(WM_SYSTEMTRAY, OnSystemtray)//添加消息映射
+	ON_COMMAND(ID_32777, &CDrinkWaterDlg::On32777)
 	ON_COMMAND(ID_32781, &CDrinkWaterDlg::On32781)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
@@ -121,7 +123,10 @@ BOOL CDrinkWaterDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
+
 	// TODO: 在此添加额外的初始化代码
+
+	SetWindowPos(&wndTopMost,0,0,0,0, SWP_NOMOVE | SWP_NOSIZE);
 
 	if (!m_bIconIsExist)
 	{
@@ -134,17 +139,18 @@ BOOL CDrinkWaterDlg::OnInitDialog()
 		m_NotifyIcon.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
 		m_bIconIsExist = Shell_NotifyIcon(NIM_ADD,&m_NotifyIcon);
 		//MoveWindow(0,0,0,0);
-		SetTimer(TIMER_HIDE_WINDOW,1,NULL);
+		//SetTimer(TIMER_HIDE_WINDOW,1,NULL);
 		SetTimer(TIMER_DRINK_WATER,1000,NULL);
 		
 		
 	}
-
+	
 	m_editFont.CreatePointFont(300, "宋体"); 
 	GetDlgItem(IDC_ST_GREET)->SetFont(&m_editFont);
 	GetDlgItem(IDC_ST_DRINK)->SetFont(&m_editFont);
 
-	SetWindowPos(&wndTopMost,0,0,0,0, SWP_NOMOVE | SWP_NOSIZE);
+	m_bStartUp = bGetStartUp();
+	m_pic.SetIcon(m_hIcon);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -232,7 +238,15 @@ afx_msg LRESULT CDrinkWaterDlg::OnSystemtray(WPARAM wParam, LPARAM lParam)
 			
 			CMenu menuexit;
 			//menu.LoadMenuW(IDR_MENU);//加载菜单资源
-			menuexit.LoadMenu(IDR_MENU1);
+			if (m_bStartUp)
+			{
+				menuexit.LoadMenu(IDR_MENU1);
+			}
+			else
+			{
+				menuexit.LoadMenu(IDR_MENU2);
+			}
+			
 			CMenu *pPopup=menuexit.GetSubMenu(0);
 			CPoint mypoint;
 			GetCursorPos(&mypoint);
@@ -273,7 +287,12 @@ void CDrinkWaterDlg::OnDestroy()
 	// TODO: 在此处添加消息处理程序代码
 }
 
-
+void CDrinkWaterDlg::On32777()
+{
+	// TODO: 在此添加命令处理程序代码
+	//托盘右键开机启动
+	Autostart();
+}
 
 void CDrinkWaterDlg::On32781()
 {
@@ -306,7 +325,7 @@ void CDrinkWaterDlg::OnTimer(UINT_PTR nIDEvent)
 			showDlg(true);
 
 		if (m_bIconIsExist)
-			//break;
+			;//break;
 
 		SetDlgItemText(IDC_ST_HOUR,strHour);
 		SetDlgItemText(IDC_ST_MINUTE,strMin);
@@ -425,4 +444,96 @@ void CDrinkWaterDlg::DrinkPlaySound(CString strSound)
 	
 	
 	
+}
+
+bool CDrinkWaterDlg::bGetStartUp()
+{
+	bool bRet = false;
+	HKEY hKey;
+	CString lpRun = _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
+	long lRet = RegOpenKeyEx(HKEY_CURRENT_USER, lpRun, 0, KEY_ALL_ACCESS, &hKey);   
+	if(lRet == ERROR_SUCCESS)   
+	{   
+		
+		DWORD dwType = REG_SZ;
+		DWORD dwSize;
+		
+		RegQueryValueEx(hKey,_T("DrinkWater"),NULL,NULL,NULL,&dwSize);
+		
+		TCHAR *szData = new TCHAR[dwSize];
+		//szData[dwSize-1] = '\0';
+		lRet = RegQueryValueEx(hKey,_T("DrinkWater"),NULL,&dwType,(LPBYTE)szData,&dwSize);
+		//lRet = RegSetValueEx(hKey, _T("DrinkWater"), 0, REG_SZ, (LPBYTE)pFileName,  (lstrlen(pFileName) + 1)*sizeof(TCHAR)); 
+		//lRet = RegQueryValueEx(hKey, _T("ddd"), NULL, NULL, (LPBYTE)&dwData,  &dwSize); 
+		//关闭注册表   
+		RegCloseKey(hKey); 
+		
+		if(lRet == ERROR_SUCCESS)   
+		{   
+			   
+			bRet = true;
+		}
+		else
+		{
+			
+			//MessageBox(_T("读取失败!"),_T("提示")); 
+			
+		}
+		delete []szData;
+	}
+
+	return bRet;
+}
+
+void CDrinkWaterDlg::Autostart()
+{
+	m_bStartUp = !m_bStartUp;
+	HKEY hKey;  
+
+	//找到系统的启动项   
+	CString lpRun = _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"); 
+
+	if(m_bStartUp)
+	{	
+		//打开启动项Key   
+		long lRet = RegOpenKeyEx(HKEY_CURRENT_USER, lpRun, 0, KEY_ALL_ACCESS, &hKey);   
+		if(lRet == ERROR_SUCCESS)   
+		{   
+			TCHAR pFileName[MAX_PATH] = {0};   
+
+			//得到程序自身的全路径   
+			DWORD dwRet = GetModuleFileName(NULL, pFileName, MAX_PATH); 
+			TRACE(pFileName);
+
+			//添加一个子Key,并设置值 // 下面"Demo"是应用程序名字（不需要加后缀.exe）  
+			lRet = RegSetValueEx(hKey, _T("DrinkWater"), 0, REG_SZ, (LPBYTE)pFileName,  (lstrlen(pFileName) + 1)*sizeof(TCHAR));   
+			
+			//关闭注册表   
+			RegCloseKey(hKey); 	
+			if(lRet != ERROR_SUCCESS)   
+			{   
+				//MessageBox(_T("系统参数错误,设置自启动失败!"),_T("提示"));    
+			}
+			else
+			{
+				//MessageBox(_T("开机启动设置成功！"), _T("提示")); 
+			}
+		}
+		else   
+		{   
+			//MessageBox(_T("系统参数错误,设置自启动失败!"),_T("提示"));   
+		}
+	}
+	else
+	{
+		long lRet = RegOpenKeyEx(HKEY_CURRENT_USER, lpRun, 0, KEY_ALL_ACCESS, &hKey);   
+		if(lRet == ERROR_SUCCESS)   
+		{
+			RegDeleteValue(hKey, _T("DrinkWater"));
+			//关闭注册表   
+			RegCloseKey(hKey);
+
+			//MessageBox(_T("关闭开机启动成功！"), _T("提示"));   
+		}
+	} 
 }

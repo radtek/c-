@@ -69,7 +69,11 @@ BOOL CDrinkWaterApp::InitInstance()
 
 	CDrinkWaterDlg dlg;
 	m_pMainWnd = &dlg;
-	INT_PTR nResponse = dlg.DoModal();
+	//INT_PTR nResponse = dlg.DoModal();
+	INT_PTR nResponse = dlg.Create(CDrinkWaterDlg::IDD);
+	//Sleep(2000);
+	dlg.ShowWindow(SW_HIDE);
+	dlg.RunModalLoop();  
 	if (nResponse == IDOK)
 	{
 		// TODO: 在此放置处理何时用
