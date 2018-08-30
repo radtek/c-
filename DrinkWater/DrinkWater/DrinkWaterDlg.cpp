@@ -321,8 +321,7 @@ void CDrinkWaterDlg::OnTimer(UINT_PTR nIDEvent)
 		KillTimer(TIMER_HIDE_WINDOW);
 		break;
 	case TIMER_DRINK_WATER:
-		if ( (strMin == "30" || strMin == "00") && strSec == "00")
-			showDlg(true);
+		
 
 		if (m_bIconIsExist)
 			;//break;
@@ -351,6 +350,7 @@ void CDrinkWaterDlg::OnTimer(UINT_PTR nIDEvent)
 			strGreet = "ÉîÒ¹ºÃ";
 
 		SetDlgItemText(IDC_ST_GREET,strGreet);
+		UpdateWindow();
 
 		GetDlgItem(IDC_ST_DRINK)->ShowWindow(SW_SHOW);
 		SetTimer(TIMER_BLINK,700,NULL);
@@ -363,6 +363,9 @@ void CDrinkWaterDlg::OnTimer(UINT_PTR nIDEvent)
 			DrinkPlaySound(strPlaySound);
 			
 		}
+
+		if ( (strMin == "30" || strMin == "00") && strSec == "00")
+			showDlg(true);
 
 		break;
 	case TIMER_BLINK:
