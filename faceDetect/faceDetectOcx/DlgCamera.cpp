@@ -43,7 +43,7 @@ void CDlgCamera::showCameraPic(cv::Mat &img, Size &size)
 	resize(img, showImg, size);
 	if (showImg.empty())
 	{
-		CLogger::Instance()->TraceInfo("showImg.empty()");
+		TrcWritef( EC_INFO,"showImg.empty()");
 		return;
 	}
 

@@ -1,0 +1,27 @@
+﻿生成启动时间为 2018/9/17 13:57:54。
+     1>项目“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\faceDetect\faceDetect.vcxproj”在节点 3 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Release\faceDetect.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         所有输出均为最新。
+         所有输出均为最新。
+       ResourceCompile:
+         所有输出均为最新。
+       Link:
+         D:\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Release\faceDetect.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /ManifestFile:"Release\faceDetect.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Release\faceDetect.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Release\faceDetect.lib" /MACHINE:X86 Release\faceDetect.res
+         Release\faceDetect.obj
+         Release\faceDetectDlg.obj
+         Release\stdafx.obj
+         正在生成代码
+         已完成代码的生成
+         faceDetect.vcxproj -> C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Release\faceDetect.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Release\faceDetect.exe;#1" /manifest Release\faceDetect.exe.intermediate.manifest "D:\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+       FinalizeBuildStatus:
+         正在删除文件“Release\faceDetect.unsuccessfulbuild”。
+         正在对“Release\faceDetect.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\faceDetect\faceDetect.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:07.14

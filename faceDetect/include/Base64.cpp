@@ -1,5 +1,6 @@
 #include "Base64.h"
 
+
 string Base64::Encode(const unsigned char* Data,int DataByte)
 {
 	//±àÂë±í

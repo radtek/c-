@@ -1,0 +1,38 @@
+﻿生成启动时间为 2018/7/12 11:44:44。
+     1>项目“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\faceDetectWin32\faceDetectWin32.vcxproj”在节点 2 上(build 个目标)。
+     1>PrepareForBuild:
+         正在创建目录“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\x64\Release\”。
+       InitializeBuildStatus:
+         正在创建“x64\Release\faceDetectWin32.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         D:\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /ID:\opencv\build\include /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"x64\Release\faceDetectWin32.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc100.pdb" /Gd /TP /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         D:\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\CL.exe /c /ID:\opencv\build\include /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"x64\Release\faceDetectWin32.pch" /Fo"x64\Release\\" /Fd"x64\Release\vc100.pdb" /Gd /TP /errorReport:prompt faceDetectWin32.cpp
+         faceDetectWin32.cpp
+       Link:
+         D:\Microsoft Visual Studio 10.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\x64\Release\faceDetectWin32.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:D:\opencv\build\x86\vc10\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"x64\Release\faceDetectWin32.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\x64\Release\faceDetectWin32.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\x64\Release\faceDetectWin32.lib" /MACHINE:X64 x64\Release\faceDetectWin32.obj
+         x64\Release\stdafx.obj
+         libfacedetect.lib
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "public: void __cdecl cv::Mat::copyTo(class cv::_OutputArray const &)const " (?copyTo@Mat@cv@@QEBAXAEBV_OutputArray@2@@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "public: __cdecl cv::_OutputArray::_OutputArray(class cv::Mat &)" (??0_OutputArray@cv@@QEAA@AEAVMat@1@@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "public: __cdecl cv::_InputArray::_InputArray(class cv::Mat const &)" (??0_InputArray@cv@@QEAA@AEBVMat@1@@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "class cv::Mat __cdecl cv::imread(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?imread@cv@@YA?AVMat@1@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "void __cdecl cv::cvtColor(class cv::_InputArray const &,class cv::_OutputArray const &,int,int)" (?cvtColor@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@HH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) int * __cdecl facedetect_frontal(unsigned char *,unsigned char *,int,int,int,float,int,int,int,int)" (__imp_?facedetect_frontal@@YAPEAHPEAE0HHHMHHHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "void __cdecl cv::rectangle(class cv::Mat &,class cv::Rect_<int>,class cv::Scalar_<double> const &,int,int,int)" (?rectangle@cv@@YAXAEAVMat@1@V?$Rect_@H@1@AEBV?$Scalar_@N@1@HHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "void __cdecl cv::circle(class cv::Mat &,class cv::Point_<int>,int,class cv::Scalar_<double> const &,int,int,int)" (?circle@cv@@YAXAEAVMat@1@V?$Point_@H@1@HAEBV?$Scalar_@N@1@HHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) int * __cdecl facedetect_frontal_surveillance(unsigned char *,unsigned char *,int,int,int,float,int,int,int,int)" (__imp_?facedetect_frontal_surveillance@@YAPEAHPEAE0HHHMHHHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) int * __cdecl facedetect_multiview(unsigned char *,unsigned char *,int,int,int,float,int,int,int,int)" (__imp_?facedetect_multiview@@YAPEAHPEAE0HHHMHHHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "__declspec(dllimport) int * __cdecl facedetect_multiview_reinforce(unsigned char *,unsigned char *,int,int,int,float,int,int,int,int)" (__imp_?facedetect_multiview_reinforce@@YAPEAHPEAE0HHHMHHHH@Z)
+     1>faceDetectWin32.obj : error LNK2001: 无法解析的外部符号 "int __cdecl cv::waitKey(int)" (?waitKey@cv@@YAHH@Z)
+     1>C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\x64\Release\faceDetectWin32.exe : fatal error LNK1120: 17 个无法解析的外部命令
+     1>已完成生成项目“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\faceDetectWin32\faceDetectWin32.vcxproj”(build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:02.18

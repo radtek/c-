@@ -24,6 +24,7 @@ BEGIN_MESSAGE_MAP(CfaceDetectOcxCtrl, COleControl)
 	ON_WM_SIZE()
 	ON_MESSAGE(WM_MESSAGE_EVENT, OnMessageChanged) 
 	ON_WM_TIMER()
+	ON_WM_COPYDATA()
 END_MESSAGE_MAP()
 
 
@@ -261,18 +262,57 @@ LRESULT CfaceDetectOcxCtrl::OnMessageChanged(WPARAM wParam, LPARAM lParam)
 			::CopyMemory(strData.GetBufferSetLength( len ),
 				lpData ,
 				len ) ;
-			CLogger::Instance()->TraceInfo("OnMessageChanged: 接收data完毕");
+			TrcWritef( EC_INFO ,"OnMessageChanged: 接收data完毕");
 			hyLivesInfoCallBack(strData);
+			//MessageBox(strData);
 
-			CLogger::Instance()->TraceInfo("OnMessageChanged: 回调事件完毕");
+			TrcWritef( EC_INFO ,"OnMessageChanged: 回调事件完毕");
 		}
 		
 	}
 	else
 	{
-		CLogger::Instance()->TraceInfo("OnMessageChanged: pCopyDataStruct 空");
-
+		TrcWritef( EC_INFO ,"OnMessageChanged: pCopyDataStruct 空");
 	}
 	
 	return 0; 
+}
+
+
+BOOL CfaceDetectOcxCtrl::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (pCopyDataStruct)
+	{
+		if ( pCopyDataStruct->dwData  == 1001 )
+		{
+			LPBYTE	lpData = (LPBYTE) pCopyDataStruct->lpData;
+			int	len = pCopyDataStruct->cbData;
+			//CString	strData ;
+			//::CopyMemory(strData.GetBufferSetLength( len ), lpData , len ) ;
+			char *szData = new char[len+1];
+			szData[len] = '\0';
+			TrcWritef( EC_INFO ,"OnCopyData: len = %d",len);
+			//memcpy_s(szData,len,lpData,len);
+			memcpy(szData,lpData ,len);
+			TrcWritef( EC_INFO ,"OnCopyData: 接收data完毕");
+			string strData(szData);
+			hyLivesInfoCallBack(strData.c_str());
+			
+			delete []szData;
+			TrcWritef( EC_INFO ,"OnCopyData: 回调事件完毕");
+		}
+		else
+		{
+			TrcWritef( EC_INFO ,"OnCopyData: pCopyDataStruct->dwData  != 1001");
+		}
+
+	}
+	else
+	{
+		TrcWritef( EC_INFO ,"OnCopyData: pCopyDataStruct 空");
+
+	}
+
+	return COleControl::OnCopyData(pWnd, pCopyDataStruct);
 }

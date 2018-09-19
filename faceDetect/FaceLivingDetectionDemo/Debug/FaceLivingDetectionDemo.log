@@ -1,0 +1,39 @@
+﻿生成启动时间为 2018/9/19 9:01:32。
+     1>项目“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\FaceLivingDetectionDemo\FaceLivingDetectionDemo.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Debug\FaceLivingDetectionDemo.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         D:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\FaceLivingDetectionDemo.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         D:\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _MBCS /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\FaceLivingDetectionDemo.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt FaceLivingDetectionDemo.cpp FaceLivingDetectionDemoDlg.cpp
+         FaceLivingDetectionDemoDlg.cpp
+         FaceLivingDetectionDemo.cpp
+         正在生成代码...
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _DEBUG /D _AFXDLL /l"0x0804" /IDebug\ /nologo /fo"Debug\FaceLivingDetectionDemo.res" FaceLivingDetectionDemo.rc 
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\FaceLivingDetectionDemo.exe.embed.manifest.res" Debug\FaceLivingDetectionDemo_manifest.rc 
+       Link:
+         D:\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.exe" /INCREMENTAL /NOLOGO opencv_calib3d249.lib opencv_contrib249.lib opencv_core249.lib opencv_features2d249.lib opencv_flann249.lib opencv_gpu249.lib opencv_highgui249.lib opencv_imgproc249.lib opencv_legacy249.lib opencv_ml249d.lib opencv_objdetect249.lib opencv_ts249.lib opencv_video249.lib opencv_nonfree249.lib opencv_ocl249.lib opencv_photo249.lib opencv_stitching249.lib opencv_superres249.lib opencv_videostab249.lib opencv_calib3d249d.lib opencv_contrib249d.lib opencv_core249d.lib opencv_features2d249d.lib opencv_flann249d.lib opencv_gpu249d.lib opencv_highgui249d.lib opencv_imgproc249d.lib opencv_legacy249d.lib opencv_objdetect249d.lib opencv_ts249d.lib opencv_video249d.lib opencv_nonfree249d.lib opencv_ocl249d.lib opencv_photo249d.lib opencv_stitching249d.lib opencv_superres249d.lib opencv_videostab249d.lib /MANIFEST /ManifestFile:"Debug\FaceLivingDetectionDemo.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.lib" /MACHINE:X86 Debug\FaceLivingDetectionDemo.res
+         Debug\FaceLivingDetectionDemo.exe.embed.manifest.res
+         Debug\FaceLivingDetectionDemo.obj
+         Debug\FaceLivingDetectionDemoDlg.obj
+         Debug\stdafx.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\FaceLivingDetectionDemo.exe.embed.manifest" /manifest Debug\FaceLivingDetectionDemo.exe.intermediate.manifest "D:\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\FaceLivingDetectionDemo.exe.embed.manifest.res" Debug\FaceLivingDetectionDemo_manifest.rc 
+       LinkEmbedManifest:
+         D:\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.exe" /INCREMENTAL /NOLOGO opencv_calib3d249.lib opencv_contrib249.lib opencv_core249.lib opencv_features2d249.lib opencv_flann249.lib opencv_gpu249.lib opencv_highgui249.lib opencv_imgproc249.lib opencv_legacy249.lib opencv_ml249d.lib opencv_objdetect249.lib opencv_ts249.lib opencv_video249.lib opencv_nonfree249.lib opencv_ocl249.lib opencv_photo249.lib opencv_stitching249.lib opencv_superres249.lib opencv_videostab249.lib opencv_calib3d249d.lib opencv_contrib249d.lib opencv_core249d.lib opencv_features2d249d.lib opencv_flann249d.lib opencv_gpu249d.lib opencv_highgui249d.lib opencv_imgproc249d.lib opencv_legacy249d.lib opencv_objdetect249d.lib opencv_ts249d.lib opencv_video249d.lib opencv_nonfree249d.lib opencv_ocl249d.lib opencv_photo249d.lib opencv_stitching249d.lib opencv_superres249d.lib opencv_videostab249d.lib /MANIFEST /ManifestFile:"Debug\FaceLivingDetectionDemo.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.lib" /MACHINE:X86 Debug\FaceLivingDetectionDemo.res
+         Debug\FaceLivingDetectionDemo.exe.embed.manifest.res
+         Debug\FaceLivingDetectionDemo.obj
+         Debug\FaceLivingDetectionDemoDlg.obj
+         Debug\stdafx.obj
+         FaceLivingDetectionDemo.vcxproj -> C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\Debug\FaceLivingDetectionDemo.exe
+       FinalizeBuildStatus:
+         正在删除文件“Debug\FaceLivingDetectionDemo.unsuccessfulbuild”。
+         正在对“Debug\FaceLivingDetectionDemo.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\Users\Administrator\Documents\Visual Studio 2010\Projects\faceDetect\FaceLivingDetectionDemo\FaceLivingDetectionDemo.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:06.50

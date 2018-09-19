@@ -4,21 +4,16 @@
 		<meta charset="utf-8" />
 		<title></title>
 	</head>
-	<OBJECT id="Ocx" align="CENTER" WIDTH=640 HEIGHT=480 codeBase="faceDetectOcx.ocx" classid="CLSID:F620116E-E336-4039-B505-953ACC371363"></OBJECT> 
+	<OBJECT id="Ocx" align="CENTER" WIDTH=1024 HEIGHT=768 codeBase="faceDetectOcx.ocx" classid="CLSID:F620116E-E336-4039-B505-953ACC371363"></OBJECT> 
 	<script language="javascript" for="Ocx" event="hyLivesInfoCallBack( strBase64 )" type="text/javascript"> 
 		CallBack(strBase64); //也可直接写操作代码
 	</script>
 	<script language="javascript"> 
-
-		var jpgPath = "d:\\cashwayFaceDetect.jpg";
-
 		function _init() 
 		{
-			var code = Ocx.hyInit();
-			if ( 0 != code )
+			if( 0 != Ocx.hyInit() )
 			{
-				alert(errCode(code));
-				return;
+				alert("初始化失败");
 			}
 		}
 
@@ -31,10 +26,9 @@
    			}
 			*/
 			//Ocx.hySetWindowPosition(0,0,1366,768);
-			var code = Ocx.hyStartCamera();
-			if ( 0 != code )
+			if ( 0 != Ocx.hyStartCamera() )
 			{
-				alert(errCode(code));
+				alert("打开摄像头失败");
 				return;
 			}
 			//Ocx.hySavePicturePath("d:\\1\\");
@@ -42,21 +36,14 @@
 
 		function _stop()
 		{
-			
-			var code = Ocx.hyStopCamera();
-			if ( 0 != code )
-			{
-				alert(errCode(code));
-				return;
-			}
+			Ocx.hyStopCamera();
 		}
 
 		function _detect()
 		{
-			var code = Ocx.hyStartLiveDetect(jpgPath);
-			if( 0 != code )
+			if( 0 != Ocx.hyStartLiveDetect("d:\\2\\pic.jpg") )
 			{
-				alert(errCode(code));
+				alert("开始人脸识别失败");
 			}
 		}
 /*
@@ -70,48 +57,13 @@
 		
 		function CallBack( base64 )
 		{
-			//alert(base64);
-			alert("识别成功 路径:"+jpgPath);
+			alert(base64);
 		}
 
 		window.onbeforeunload= function(event) { 
-			Ocx.hyStopCamera();
+			_stop();
 		}
-		
-		function errCode( code )
-		{
-			switch(code)
-			{
-			case 0:
-				return "成功";
-			case -1:
-				return "权重文件不存在或key文件不存在或key未授权";
-			case -2:
-				return "未初始化";
-			case -3:
-				return "摄像头已开启过";
-			case -4:
-				return "人脸识别已开启过";
-			case -5:
-				return "未开启摄像头";
-			case -6:
-				return "打开彩色摄像头失败";
-			case -7:
-				return "打开黑白摄像头失败";
-			case -8:
-				return "显示视频线程开启失败";
-			case -9:
-				return "彩色摄像头人脸识别缓存创建失败";
-			case -10:
-				return "黑白摄像头人脸识别缓存创建失败";
-			case -11:
-				return "摄像头序列号配置不能相同";
-				
-			default:
-				return "未知错误";
-			}
 
-		}
 		//window.onunload = function(event) { return confirm("确定离开此页面吗？"); }
 	</script> 
 	

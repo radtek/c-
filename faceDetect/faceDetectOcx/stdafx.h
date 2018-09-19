@@ -28,10 +28,13 @@ using namespace ATL;
 
 
 
-#include "Logger.h"
+//#include "Logger.h"
 
-using namespace LOGGER;
+//using namespace LOGGER;
 //CLogger logger(LogLevel_Info,CLogger::GetAppPathA().append("log\\"));
+
+
+#include "E:\ºãÒø\include\ITrace.h"
 
 #define WM_MESSAGE_EVENT (WM_USER+100)
 

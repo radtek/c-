@@ -69,11 +69,13 @@ public:
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//接收子线程发来的消息
 	afx_msg LRESULT OnMessageChanged(WPARAM wParam, LPARAM lParam);
-
+	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 public:
 	//回调函数图片base64
 	void hyLivesInfoCallBack(LPCTSTR base64Image)
 	{
 		FireEvent(eventidhyLivesInfoCallBack, EVENT_PARAM(VTS_BSTR), base64Image);
+		
 	}
+	
 };
